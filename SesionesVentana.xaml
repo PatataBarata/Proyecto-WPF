@@ -1,0 +1,37 @@
+﻿<Window x:Class="Proyecto_WPF.SesionesVentana"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proyecto_WPF"
+        mc:Ignorable="d"
+        Title="SesionesVentana" Height="450" Width="800">
+    <DockPanel >
+        <StackPanel DockPanel.Dock="Right" Height="200" Width="350">
+            <TextBlock>Sesion:</TextBlock>
+            <TextBox x:Name="sesionVentanaTexBox"></TextBox>
+            <TextBlock>Sala numero:</TextBlock>
+            <TextBox x:Name="numeroSalaSesionTexBox"></TextBox>
+            <TextBlock>Numero de butacas:</TextBlock>
+            <TextBlock x:Name="numeroButacasSeion" Text="{Binding Path=noMeacuerdo}"></TextBlock>
+            <Button x:Name="añadirButton">
+                <TextBlock x:Name="añadirModificarTextBlock" Text="{Binding Path=añadirNuevaSalaButton}">salida</TextBlock>
+            </Button>
+            <Image x:Name="fotoSalaImage" Source="{Binding Path=Ejemplo}"></Image>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+        <Button x:Name="añadirNuevaSesionButton">Añadir sesion</Button>
+        <Button x:Name="modificarSesionButton">Modificar sesion</Button>
+        <Button x:Name="eliminarSesionButton" >Eliminar sesion</Button>
+        </StackPanel>
+    <DataGrid x:Name="gestionSalasLixtBox" ItemsSource="{Binding}" AutoGenerateColumns="False" ColumnWidth="*">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Sesion"
+                                    Binding="{Binding Path=numeroSala}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Sala"
+                                    Binding="{Binding Path=totalButacas}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Pelicula"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

@@ -1,0 +1,26 @@
+﻿<Window x:Class="Proyecto_WPF.ConsulatSesion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proyecto_WPF"
+        mc:Ignorable="d"
+        Title="ConsulatSesion" Height="450" Width="800">
+    <StackPanel>
+        <DataGrid x:Name="gestionSalasLixtBox" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Pelicula"
+                                    Binding="{Binding Path=pelicula}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Sesion"
+                                    Binding="{Binding Path=numeroSesion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Sala"
+                                    Binding="{Binding Path=numeroSala}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Numero de Butacas"
+                                    Binding="{Binding Path=totalButacas}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Butacas disponible"
+                                    Binding="{Binding Path=dispobleButacas}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button>volver</Button>
+    </StackPanel>
+</Window>

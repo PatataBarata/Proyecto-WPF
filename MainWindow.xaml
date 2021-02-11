@@ -1,0 +1,50 @@
+﻿<Window x:Class="Proyecto_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proyecto_WPF"
+        mc:Ignorable="d"
+        Title="Cines 'El Pepe'" Height="450" Width="800"
+        Icon="Imagen/Cabecera.png">
+    <TabControl>
+        <TabItem Header="Gestor">
+            <StackPanel>
+                <ListView   x:Name="Cartelera"></ListView>
+                <Button x:Name="SalasButton" Click="SalasButton_Click">Salas</Button>
+                <Button x:Name="SesionesButton" Click="SesionesButton_Click">Sesiones</Button>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Venta en taquilla">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" x:Name="CabeceraPeliculasTextBlock">Peliculas disponibles en nuestro Cine</TextBlock>
+                <StackPanel DockPanel.Dock="Right">
+                    <TextBlock x:Name="nombrePeliculaEleccionTexblock" Text="{Binding Path=pelicula}">pelicula</TextBlock>
+                    <TextBlock >Elige sesion:</TextBlock>
+                    <ComboBox >
+                        <ComboBoxItem x:Name="sesionComboBox"></ComboBoxItem>
+                    </ComboBox>
+                    <TextBlock>numero de butaca</TextBlock>
+                    <ComboBox>
+                        <ComboBoxItem x:Name="numeroButacaComboBox"></ComboBoxItem>
+                    </ComboBox>
+                    <Button x:Name="accederAPagoButton">Aceptar</Button>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
+                <Button x:Name="ventaEntradaButton" >Venta de entradas</Button>
+                <Button x:Name="consultaOcupacionButton" >Consulta ocupacón de salas</Button>
+                </StackPanel>
+                <ListBox x:Name="cartelaCineLisBox" ItemsSource="{Binding Path=Peliculas}">
+                    <ListBoxItem x:Name="carterItemLisbox">
+                    <StackPanel>
+                        <Image Source="{Binding Path=cartel}"></Image>
+                        <TextBlock Text="{Binding Path=pelicula}" >texto</TextBlock>
+                    </StackPanel>
+                </ListBoxItem>
+            </ListBox>
+                
+            </DockPanel>
+
+        </TabItem>
+    </TabControl>
+</Window>
