@@ -31,12 +31,14 @@ namespace Proyecto_WPF
 
         private void SalasButton_Click(object sender, RoutedEventArgs e)
         {
-            //abre ventana de Salas
+            //abre ventana de Salas asdasdas 
         }
 
         private void SesionesButton_Click(object sender, RoutedEventArgs e)
         {
-          
+            
+
+
 
             //abre ventana de Sesiones
         }
