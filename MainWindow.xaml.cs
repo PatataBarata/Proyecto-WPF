@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Proyecto_WPF
 {
     /// <summary>
@@ -23,21 +24,27 @@ namespace Proyecto_WPF
     {
         public MainWindow()
         {
+            ApiRestPeliculas apiRest = new ApiRestPeliculas();
+            ObservableCollection<Pelicula> pelicula;
             InitializeComponent();
-             Pelicula pelicula= new Pelicula();
-           DataContext = pelicula;
+            pelicula= apiRest.GetPelicula();
+            DataContext = pelicula;
             
         }
 
         private void SalasButton_Click(object sender, RoutedEventArgs e)
-        {
+        { 
+            SalasVentana salaVentana = new SalasVentana();
+            salaVentana.Owner = this;
             //abre ventana de Salas asdasdas 
+            salaVentana.ShowInTaskbar = false;
+            salaVentana.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            salaVentana.Show();
         }
 
         private void SesionesButton_Click(object sender, RoutedEventArgs e)
         {
-            
-
+           
 
 
             //abre ventana de Sesiones

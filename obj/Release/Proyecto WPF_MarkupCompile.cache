@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-C:\Users\AlumnoT1\Documents\GitHub\Proyecto-WPF\obj\Debug\
+C:\Users\AlumnoT1\Documents\GitHub\Proyecto-WPF\obj\Release\
 Proyecto_WPF
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\AlumnoT1\Documents\GitHub\Proyecto-WPF\App.xaml
 4534235744
 31173992926
-15-507699431
+14334659936
 130-2023332424
 ConsulatSesion.xaml;MainWindow.xaml;SalasVentana.xaml;SesionesVentana.xaml;
 

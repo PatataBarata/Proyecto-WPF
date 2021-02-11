@@ -18,9 +18,7 @@ namespace Proyecto_WPF
 
         public Pelicula()
         {
-            //ApiRestPeliculas apiRest = new ApiRestPeliculas();
-            //peliculas = apiRest.GetPelicula();
-            
+       
         }
 
         public Pelicula(string titulo, float duracion, string genero, string calificacion, string cartel, int anyo)

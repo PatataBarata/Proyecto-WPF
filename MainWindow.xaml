@@ -9,11 +9,16 @@
         Icon="Imagen/Cabecera.png">
     <TabControl>
         <TabItem Header="Gestor">
-            <StackPanel>
+            <DockPanel>
+                <StatusBar DockPanel.Dock="Bottom">
+                    <TextBlock Text="Cines Pepe"></TextBlock>
+                </StatusBar>
+            <StackPanel  HorizontalAlignment="Center">
                 <ListView   x:Name="Cartelera"></ListView>
-                <Button x:Name="SalasButton" Click="SalasButton_Click">Salas</Button>
-                <Button x:Name="SesionesButton" Click="SesionesButton_Click">Sesiones</Button>
+                <Button Margin="10" x:Name="SalasButton" Click="SalasButton_Click">Gestionar Salas</Button>
+                <Button Margin="10" x:Name="SesionesButton" Click="SesionesButton_Click">Gertionar Sesiones</Button>
             </StackPanel>
+                </DockPanel>
         </TabItem>
         <TabItem Header="Venta en taquilla">
             <DockPanel>

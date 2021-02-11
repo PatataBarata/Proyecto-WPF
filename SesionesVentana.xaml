@@ -13,7 +13,7 @@
             <TextBlock>Sala numero:</TextBlock>
             <TextBox x:Name="numeroSalaSesionTexBox"></TextBox>
             <TextBlock>Numero de butacas:</TextBlock>
-            <TextBlock x:Name="numeroButacasSeion" Text="{Binding Path=noMeacuerdo}"></TextBlock>
+            <TextBox x:Name="numeroButacasSeion" Text="{Binding Path=noMeacuerdo}"></TextBox>
             <Button x:Name="añadirButton">
                 <TextBlock x:Name="añadirModificarTextBlock" Text="{Binding Path=añadirNuevaSalaButton}">salida</TextBlock>
             </Button>
