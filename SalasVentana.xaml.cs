@@ -23,5 +23,19 @@ namespace Proyecto_WPF
         {
             InitializeComponent();
         }
+
+        private void añadirNuevaSalaButton_Click(object sender, RoutedEventArgs e)
+        {
+            CambiarSalasStackPanel.Visibility = Visibility.Visible;
+        }
+
+        private void modificarSalaButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (false)//si ha seleccionado una sala para modificar
+                CambiarSalasStackPanel.Visibility = Visibility.Visible;
+            else
+            
+               MessageBox.Show("Elige una sala para modificar");
+        }
     }
 }

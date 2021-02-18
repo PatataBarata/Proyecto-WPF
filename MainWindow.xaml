@@ -13,12 +13,42 @@
                 <StatusBar DockPanel.Dock="Bottom">
                     <TextBlock Text="Cines Pepe"></TextBlock>
                 </StatusBar>
-            <StackPanel  HorizontalAlignment="Center">
-                <ListView   x:Name="Cartelera"></ListView>
-                <Button Margin="10" x:Name="SalasButton" Click="SalasButton_Click">Gestionar Salas</Button>
-                <Button Margin="10" x:Name="SesionesButton" Click="SesionesButton_Click">Gertionar Sesiones</Button>
-            </StackPanel>
-                </DockPanel>
+                <StackPanel >
+                 <Button Margin="10" x:Name="SalasButton" Click="SalasButton_Click">Gestionar Salas</Button>
+                 <Button Margin="10" x:Name="SesionesButton" Click="SesionesButton_Click">Gertionar Sesiones</Button>
+                </StackPanel>
+                <ListBox x:Name="cartelaCineLisBox" ItemsSource="{Binding}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Brown" BorderThickness="3">
+                                <StackPanel Orientation="Horizontal" Width="300">
+                                    <Image Margin="5" Source="{Binding Path=Cartel}" Width="90" HorizontalAlignment="Center"></Image>
+                                    <StackPanel Margin="10,1">
+                                        <TextBlock>Pelicula</TextBlock>
+                                        <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Titulo}" Margin="10"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock>Duracion:</TextBlock>
+                                            <TextBlock Text="{Binding Duracion}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock>Genero:</TextBlock>
+                                            <TextBlock Text="{Binding Genero}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock>Calificacion:</TextBlock>
+                                            <TextBlock Text="{Binding Calificacion}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock>Año:</TextBlock>
+                                            <TextBlock Text="{Binding Anyo}"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
         </TabItem>
         <TabItem Header="Venta en taquilla">
             <DockPanel>
@@ -39,13 +69,36 @@
                 <Button x:Name="ventaEntradaButton" >Venta de entradas</Button>
                 <Button x:Name="consultaOcupacionButton" >Consulta ocupacón de salas</Button>
                 </StackPanel>
-                <ListBox x:Name="cartelaCineLisBox" ItemsSource="{Binding Path=Peliculas}">
-                    <ListBoxItem x:Name="carterItemLisbox">
-                    <StackPanel>
-                        <Image Source="{Binding Path=cartel}"></Image>
-                        <TextBlock Text="{Binding Path=pelicula}" >texto</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
+                <ListBox x:Name="cartelaCissneLisBox" ItemsSource="{Binding}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Brown" BorderThickness="3">
+                    <StackPanel Orientation="Horizontal" Width="300">
+                        <Image Margin="5" Source="{Binding Path=Cartel}" Width="90" HorizontalAlignment="Center"></Image>
+                                <StackPanel Margin="10,1">
+                                    <TextBlock>Pelicula</TextBlock>
+                                <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Titulo}" Margin="10"></TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                    <TextBlock>Duracion: </TextBlock>
+                                    <TextBlock Text="{Binding Duracion}"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                    <TextBlock>Genero: </TextBlock>
+                                    <TextBlock Text="{Binding Genero}"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                            <TextBlock>Calificacion: </TextBlock>
+                                    <TextBlock Text="{Binding Calificacion}"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                                <TextBlock>Año:</TextBlock>
+                                    <TextBlock Text="{Binding Anyo}"></TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
             </ListBox>
                 
             </DockPanel>

@@ -25,10 +25,10 @@ namespace Proyecto_WPF
         public MainWindow()
         {
             ApiRestPeliculas apiRest = new ApiRestPeliculas();
-            ObservableCollection<Pelicula> pelicula;
+            ObservableCollection<Pelicula> pelicula= apiRest.GetPelicula();
             InitializeComponent();
-            pelicula= apiRest.GetPelicula();
-            DataContext = pelicula;
+            cartelaCineLisBox.DataContext = pelicula;   
+        
             
         }
 

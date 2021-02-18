@@ -14,7 +14,7 @@ namespace Proyecto_WPF
         private string cartel;
         private int anyo;
         public int id=0;
-        public ObservableCollection<Pelicula> peliculas;
+       // public ObservableCollection<Pelicula> peliculas;
 
         public Pelicula()
         {
