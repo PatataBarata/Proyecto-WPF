@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_WPF"
         mc:Ignorable="d"
-        Title="SesionesVentana" Height="450" Width="800">
+        Title="Gestion de Sesiones" Height="450" Width="800">
     <DockPanel >
-        <StackPanel DockPanel.Dock="Right" Height="200" Width="350">
+        <StackPanel x:Name="GestorSesionesStackPanel" DockPanel.Dock="Right" Height="200" Width="350" Visibility="Collapsed">
             <TextBlock>Sesion:</TextBlock>
             <TextBox x:Name="sesionVentanaTexBox"></TextBox>
             <TextBlock>Sala numero:</TextBlock>
@@ -15,14 +15,16 @@
             <TextBlock>Numero de butacas:</TextBlock>
             <TextBox x:Name="numeroButacasSeion" Text="{Binding Path=noMeacuerdo}"></TextBox>
             <Button x:Name="añadirButton">
-                <TextBlock x:Name="añadirModificarTextBlock" Text="{Binding Path=añadirNuevaSalaButton}">salida</TextBlock>
+                <TextBlock x:Name="aleatorioSesionesButton"
+                           ></TextBlock>
             </Button>
+            <Button x:Name="cancelarAñadirSesionButton" Click="cancelarAñadirSesionButton_Click">Cancelar</Button>
             <Image x:Name="fotoSalaImage" Source="{Binding Path=Ejemplo}"></Image>
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
-        <Button x:Name="añadirNuevaSesionButton">Añadir sesion</Button>
-        <Button x:Name="modificarSesionButton">Modificar sesion</Button>
-        <Button x:Name="eliminarSesionButton" >Eliminar sesion</Button>
+        <Button x:Name="añadirNuevaSesionButton" Click="añadirNuevaSesionButton_Click">Añadir sesion</Button>
+        <Button x:Name="modificarSesionButton" Click="modificarSesionButton_Click">Modificar sesion</Button>
+        <Button x:Name="eliminarSesionButton" Click="eliminarSesionButton_Click">Eliminar sesion</Button>
         </StackPanel>
     <DataGrid x:Name="gestionSalasLixtBox" ItemsSource="{Binding}" AutoGenerateColumns="False" ColumnWidth="*">
             <DataGrid.Columns>

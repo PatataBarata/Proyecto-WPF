@@ -23,5 +23,42 @@ namespace Proyecto_WPF
         {
             InitializeComponent();
         }
+
+        private void añadirNuevaSesionButton_Click(object sender, RoutedEventArgs e)
+        {
+            GestorSesionesStackPanel.Visibility = Visibility.Visible;
+            aleatorioSesionesButton.Text = añadirNuevaSesionButton.Content.ToString();
+        }
+
+        private void modificarSesionButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (false)//si ha seleccionado una sala para modificar
+            {
+                GestorSesionesStackPanel.Visibility = Visibility.Visible;
+                aleatorioSesionesButton.Text = modificarSesionButton.Content.ToString();
+            }
+            else
+
+                MessageBox.Show("Elige una Sesion para modificar");
+        }
+
+        private void eliminarSesionButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (false)//si ha seleccionado una sala para modificar
+            {
+                GestorSesionesStackPanel.Visibility = Visibility.Visible;
+                aleatorioSesionesButton.Text = eliminarSesionButton.Content.ToString();
+            }
+            else
+
+                MessageBox.Show("Elige una Sesion para Eliminar");
+        }
+
+        private void cancelarAñadirSesionButton_Click(object sender, RoutedEventArgs e)
+        {
+            GestorSesionesStackPanel.Visibility = Visibility.Collapsed;
+            // limpiar los TextBox
+        }
     }
 }

@@ -36,7 +36,7 @@ namespace Proyecto_WPF
         { 
             SalasVentana salaVentana = new SalasVentana();
             salaVentana.Owner = this;
-            //abre ventana de Salas asdasdas 
+            //abre ventana de Salas  
             salaVentana.ShowInTaskbar = false;
             salaVentana.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             salaVentana.Show();
@@ -44,7 +44,12 @@ namespace Proyecto_WPF
 
         private void SesionesButton_Click(object sender, RoutedEventArgs e)
         {
-           
+            SesionesVentana sesionesVentana = new SesionesVentana();
+            sesionesVentana.Owner = this;
+            //abre ventana de Salas  
+            sesionesVentana.ShowInTaskbar = false;
+            sesionesVentana.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            sesionesVentana.Show();
 
 
             //abre ventana de Sesiones

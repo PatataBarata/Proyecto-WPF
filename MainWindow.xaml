@@ -7,46 +7,68 @@
         mc:Ignorable="d"
         Title="Cines 'El Pepe'" Height="450" Width="800"
         Icon="Imagen/Cabecera.png">
-    <TabControl>
-        <TabItem Header="Gestor">
-            <DockPanel>
+    <Window.Resources>
+        <DataTemplate x:Key="PlantillaPeliculasLixbox">
+            <Border BorderBrush="Brown"
+                    BorderThickness="3">
+                <StackPanel Orientation="Horizontal"
+                            Width="300" Height="150">
+                    <Image Margin="5"
+                           Source="{Binding Path=Cartel}"
+                           Width="90"
+                           HorizontalAlignment="Center"></Image>
+                    <StackPanel Margin="10,1">
+                        <TextBlock>Pelicula</TextBlock>
+                        <TextBlock DockPanel.Dock="Top"
+                                   Text="{Binding Path=Titulo}"
+                                   Margin="10"></TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Duracion:</TextBlock>
+                            <TextBlock Text="{Binding Duracion}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Genero:</TextBlock>
+                            <TextBlock Text="{Binding Genero}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Calificacion:</TextBlock>
+                            <TextBlock Text="{Binding Calificacion}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Año:</TextBlock>
+                            <TextBlock Text="{Binding Año}"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+    <DockPanel>
                 <StatusBar DockPanel.Dock="Bottom">
                     <TextBlock Text="Cines Pepe"></TextBlock>
                 </StatusBar>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem>
+                <MenuItem.Icon>ds</MenuItem.Icon>
+                <MenuItem.Header>_Ayuda </MenuItem.Header>
+                
+            </MenuItem>
+        </Menu>
+    <TabControl>
+        <TabItem Header="Gestor">
+            <DockPanel>
                 <StackPanel >
                  <Button Margin="10" x:Name="SalasButton" Click="SalasButton_Click">Gestionar Salas</Button>
                  <Button Margin="10" x:Name="SesionesButton" Click="SesionesButton_Click">Gertionar Sesiones</Button>
                 </StackPanel>
-                <ListBox x:Name="cartelaCineLisBox" ItemsSource="{Binding}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderBrush="Brown" BorderThickness="3">
-                                <StackPanel Orientation="Horizontal" Width="300">
-                                    <Image Margin="5" Source="{Binding Path=Cartel}" Width="90" HorizontalAlignment="Center"></Image>
-                                    <StackPanel Margin="10,1">
-                                        <TextBlock>Pelicula</TextBlock>
-                                        <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Titulo}" Margin="10"></TextBlock>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Duracion:</TextBlock>
-                                            <TextBlock Text="{Binding Duracion}"></TextBlock>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Genero:</TextBlock>
-                                            <TextBlock Text="{Binding Genero}"></TextBlock>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Calificacion:</TextBlock>
-                                            <TextBlock Text="{Binding Calificacion}"></TextBlock>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Año:</TextBlock>
-                                            <TextBlock Text="{Binding Anyo}"></TextBlock>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </StackPanel>
-                            </Border>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
+                <ListBox x:Name="cartelaCineLisBox"
+                         ItemsSource="{Binding}"
+                         ItemTemplate="{StaticResource PlantillaPeliculasLixbox}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
                 </ListBox>
             </DockPanel>
         </TabItem>
@@ -105,4 +127,5 @@
 
         </TabItem>
     </TabControl>
+    </DockPanel>
 </Window>

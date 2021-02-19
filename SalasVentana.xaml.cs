@@ -27,15 +27,26 @@ namespace Proyecto_WPF
         private void añadirNuevaSalaButton_Click(object sender, RoutedEventArgs e)
         {
             CambiarSalasStackPanel.Visibility = Visibility.Visible;
+            aleatorioButtonSalasTextBlock.Text = añadirNuevaSalaButton.Content.ToString();
         }
 
         private void modificarSalaButton_Click(object sender, RoutedEventArgs e)
         {
-            if (false)//si ha seleccionado una sala para modificar
+
+            if (true)//si ha seleccionado una sala para modificar¨
+            {
                 CambiarSalasStackPanel.Visibility = Visibility.Visible;
-            else
-            
-               MessageBox.Show("Elige una sala para modificar");
+            aleatorioButtonSalasTextBlock.Text = modificarSalaButton.Content.ToString();
+        }
+            else{
+                
+            MessageBox.Show("Elige una sala para modificar");}
+}
+
+        private void CancelarButton_Click(object sender, RoutedEventArgs e)
+        {
+            CambiarSalasStackPanel.Visibility = Visibility.Collapsed;
+            //limpiar los campos de los TextBox
         }
     }
 }

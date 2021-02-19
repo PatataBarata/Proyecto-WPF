@@ -12,8 +12,8 @@ namespace Proyecto_WPF
         private string genero;
         private string calificacion;
         private string cartel;
-        private int anyo;
-        public int id=0;
+        private int año;
+        public int id;
        // public ObservableCollection<Pelicula> peliculas;
 
         public Pelicula()
@@ -21,14 +21,14 @@ namespace Proyecto_WPF
        
         }
 
-        public Pelicula(string titulo, float duracion, string genero, string calificacion, string cartel, int anyo)
+        public Pelicula(string titulo, float duracion, string genero, string calificacion, string cartel, int año)
         {
             this.Titulo = titulo;
             this.Duracion = duracion;
             this.Genero = genero;
             this.Calificacion = calificacion;
             this.Cartel = cartel;
-            this.Anyo = anyo;
+            this.Año = año;
         }
 
         public string Titulo
@@ -63,10 +63,10 @@ namespace Proyecto_WPF
                 this.NotifyPropertyChanged("Cartel");
             }
         }
-        public int Anyo { get => anyo; set
+        public int Año { get => año; set
             {
-                this.anyo = value;
-                this.NotifyPropertyChanged("Anyo");
+                this.año = value;
+                this.NotifyPropertyChanged("Año");
             }
         }
 

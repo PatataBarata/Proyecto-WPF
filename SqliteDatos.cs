@@ -12,6 +12,7 @@ namespace Proyecto_WPF
 
         private readonly SqliteConnection connection;
         private SqliteCommand comando;
+        
 
         public SqliteDatos()
         {
@@ -54,11 +55,16 @@ namespace Proyecto_WPF
         }
 
         private void InsertarPelicula(Pelicula pelicula) {
-            if (true)// comprueba si la peli ya existe
+
+           
+            connection.Open();
+            comando.Connection.CreateCommand();            
+            comando.CommandText = "SELECT COUNT(ID) FROM peliculas WHERE idPelicula="+pelicula.id;
+            comando.ExecuteReader().Equals(1); 
+                
+                if (comando.ExecuteReader().Equals(1))// comprueba si la peli ya existe
             {
 
-            connection.Open();
-            comando.Connection.CreateCommand();
             comando.CommandText = "INSERT INTO @tabla VALUES (@id ,@titulo, @cartel,@anyo,@genero, @calificacion)";
             comando.Parameters.Add("@id", SqliteType.Integer);
             comando.Parameters.Add("@titulo",SqliteType.Text);
@@ -70,7 +76,7 @@ namespace Proyecto_WPF
             comando.Parameters["@titulo"].Value = pelicula.Titulo;
             comando.Parameters["@cartel"].Value = pelicula.Cartel;
             comando.Parameters["@genero"].Value = pelicula.Genero;
-            comando.Parameters["@anyo"].Value = pelicula.Anyo;
+            comando.Parameters["@año"].Value = pelicula.Año;
             comando.Parameters["@calificacion"].Value = pelicula.Calificacion;
             comando.ExecuteNonQuery();
                 connection.Close();

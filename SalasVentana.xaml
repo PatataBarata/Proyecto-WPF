@@ -5,16 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_WPF"
         mc:Ignorable="d"
-        Title="Salas" Height="450" Width="800">
+        Title="Gestion de Salas" Height="450" Width="800">
     <DockPanel >
         <StackPanel x:Name="CambiarSalasStackPanel" DockPanel.Dock="Right" Height="200" Width="350" Visibility="Collapsed" >        
         <TextBlock>Sala numero:</TextBlock>
         <TextBox x:Name="NumeroSalaTexBox" Text="{Binding Path=NumeroSala}" ></TextBox>
         <TextBlock>Numero de butacas:</TextBlock>
             <TextBox x:Name="asientosSalaTexBox" Text="{Binding Path=TotalButacas}"></TextBox>
-            <Button x:Name="añadirButton" >
-                <TextBlock x:Name="añadirModificarTextBlock" Text="{Binding Path=añadirNuevaSalaButton}" ></TextBlock>
+            <Button x:Name="aleatorioButtonSalas" >
+                <TextBlock x:Name="aleatorioButtonSalasTextBlock"></TextBlock>
             </Button>
+            <Button x:Name="CancelarButton" Click="CancelarButton_Click">Cancelar</Button>
             
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
