@@ -16,20 +16,27 @@ namespace Proyecto_WPF
         private int numeroButacaOcupadas;
         private const int TOTALSESIONES = 3;
         private bool todasLasSesiones = false;
+        private int numeroSesiones=0;
         private int butacasDisponibles { get { return totalButacas - numeroButacaOcupadas; } }
      
         public Sala()
         {
         }
 
-        public Sala(string numeroSala, int totalButacas, int numeroButaca, bool completa)
+        public Sala(string numeroSala, int totalButacas, bool completa)
         {
             NumeroSala = numeroSala;
             TotalButacas = totalButacas;
-            NumeroButaca = numeroButaca;
             Completa = completa;
+            
         }
 
+        public int contarSesiones() {
+
+
+
+            return numeroSesiones;
+        }
         public string NumeroSala
         {
             get => numeroSala;
@@ -49,14 +56,7 @@ namespace Proyecto_WPF
                 this.NotifyPropertyChanged("TotalButacas");
             }
         }
-        public int NumeroButaca
-        {
-            get => numeroButacaOcupadas; set
-            {
-                this.numeroButacaOcupadas = value;
-                this.NotifyPropertyChanged("NumeroButacasOcupadas");
-            }
-        }
+   
         public bool Completa
         {
             get => completa; set

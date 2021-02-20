@@ -19,17 +19,18 @@ namespace Proyecto_WPF
     /// </summary>
     public partial class SalasVentana : Window 
     {
+        VistaModeloSalaWindow vMS;
         public SalasVentana()
         {
+            vMS = new VistaModeloSalaWindow();
             InitializeComponent();
+            DataContext = vMS;
         }
-
         private void añadirNuevaSalaButton_Click(object sender, RoutedEventArgs e)
         {
             CambiarSalasStackPanel.Visibility = Visibility.Visible;
             aleatorioButtonSalasTextBlock.Text = añadirNuevaSalaButton.Content.ToString();
         }
-
         private void modificarSalaButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -42,11 +43,21 @@ namespace Proyecto_WPF
                 
             MessageBox.Show("Elige una sala para modificar");}
 }
+        private void eliminarSesionButton_Click(object sender, RoutedEventArgs e) {
 
+           vMS.EliminarSesion();
+        }
         private void CancelarButton_Click(object sender, RoutedEventArgs e)
         {
             CambiarSalasStackPanel.Visibility = Visibility.Collapsed;
             //limpiar los campos de los TextBox
+        }
+
+        private void aleatorioButtonSalas_Click(object sender, RoutedEventArgs e)
+        {
+            if (vMS.ComprobarNuevaSala())
+
+                vMS.AñadirSala();
         }
     }
 }

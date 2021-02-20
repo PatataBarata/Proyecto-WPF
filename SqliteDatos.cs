@@ -13,10 +13,7 @@ namespace Proyecto_WPF
 
         private readonly SqliteConnection connection;
         private SqliteCommand comando;
-       
-
-
-
+   
         public SqliteDatos()
         {
             connection = new SqliteConnection("Data Source=Cinespepe.db");
@@ -96,6 +93,19 @@ namespace Proyecto_WPF
             connection.Close();
         }
 
+        public bool CountSesionPorSala(Sala sala) {
+            bool confirmacion = false;
+            connection.Open();
+            comando = connection.CreateCommand();
+            comando.CommandText = "SELECT COUND(*) FROM sala WHERE numero=" + sala.NumeroSala;
+            SqliteDataReader leer = comando.ExecuteReader();
+            if (Convert.ToInt32(leer.GetValue(0))==3)
+                confirmacion = true;
+
+            connection.Close();
+            return confirmacion;
+
+        }//Comprobar si funciona
         private void InsertarPelicula(Pelicula pelicula) {     
             
                
@@ -121,22 +131,76 @@ namespace Proyecto_WPF
             }
 
         }
-        private void InsertarSala(Sala sala)
-        {           
+        private void UpdateSala(Sala sala) {
+            if (estaLaSala(sala))
+            {
                 connection.Open();
-                comando=connection.CreateCommand();
+                comando = connection.CreateCommand();
+                comando.CommandText = "UPDATE salas SET numero=@numero, capacidad= @capacidad, hora=@hora WHERE numero=@numero";
+
+                comando.Parameters.Add("@numero", SqliteType.Text);
+                comando.Parameters.Add("@capacidad", SqliteType.Integer);
+                comando.Parameters.Add("@hora", SqliteType.Text);
+
+                comando.Parameters["@numero"].Value = sala.NumeroSala;
+                comando.Parameters["@capacidad"].Value = sala.TotalButacas;
+                comando.Parameters["@hora"].Value = sala.Completa; //¿ esto se tiene que parsear?
+
+                comando.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        private void UpdateSesion(Sesion sesion)
+        {
+            
+                connection.Open();
+                comando = connection.CreateCommand();
+                comando.CommandText = "UPDATE sesiones SET pelicula=@pelicula, sala= @sala, disponible=@disponible WHERE idSesion=@idSesion";
+
+                comando.Parameters.Add("@idSesion", SqliteType.Integer);
+                comando.Parameters.Add("@pelicula", SqliteType.Integer);
+                comando.Parameters.Add("@sala", SqliteType.Integer);
+                comando.Parameters.Add("@numero", SqliteType.Integer);
+
+                comando.Parameters["@idSesion"].Value = sesion.IdSesion;
+                comando.Parameters["@pelicula"].Value = sesion.IdPelicula;
+                comando.Parameters["@sala"].Value = sesion.IdSala;
+                comando.Parameters["@numero"].Value = sesion.Hora; 
+
+                comando.ExecuteNonQuery();
+                connection.Close();
+            
+        }//coprobar antes de hacer el Update
+
+        public void DeleteSesion(Sesion sesion) {
+
+            connection.Open();
+            comando = connection.CreateCommand();
+            comando.CommandText = "DELETE FROM sesiones WHERE idSesion=@idSesion";
+            comando.Parameters.Add("@idSesion", SqliteType.Integer);
+            comando.Parameters["@idSesion"].Value = sesion.IdSesion;
+             comando.ExecuteNonQuery();
+            connection.Close();
+        }
+        private void InsertarSala(Sala sala)
+        {
+            if (!estaLaSala(sala))
+            {
+                connection.Open();
+                comando = connection.CreateCommand();
                 comando.CommandText = "INSERT INTO salas VALUES (@numero, @capacidad, @disponible)";
-               
+
                 comando.Parameters.Add("@numero", SqliteType.Text);
                 comando.Parameters.Add("@capacidad", SqliteType.Integer);
                 comando.Parameters.Add("@disponible", SqliteType.Integer);
-                
+
                 comando.Parameters["@numero"].Value = sala.NumeroSala;
                 comando.Parameters["@capacidad"].Value = sala.TotalButacas;
                 comando.Parameters["@disponible"].Value = sala.Completa;
-               
+
                 comando.ExecuteNonQuery();
-                connection.Close();           
+                connection.Close();
+            }
         }
         private void InsertarSesion(Sesion sesion)
         {
@@ -194,6 +258,19 @@ namespace Proyecto_WPF
                 Properties.Settings.Default.Fecha= fechaDeHoy;
                 Properties.Settings.Default.Save();
             return actualizadas;
+        }
+        private bool estaLaSala(Sala sala)
+        {
+            bool confirmacion = false;
+            connection.Open();
+            comando = connection.CreateCommand();
+            comando.CommandText = "SELECT * FROM salas WHERE numero=" + sala.NumeroSala;
+            SqliteDataReader leer = comando.ExecuteReader();
+            if (leer.HasRows)
+                confirmacion = true;
+
+            connection.Close();
+            return confirmacion;
         }
     }
 

@@ -87,9 +87,9 @@
                     </ComboBox>
                     <Button x:Name="accederAPagoButton">Aceptar</Button>
                 </StackPanel>
-                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
+                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button x:Name="ventaEntradaButton" >Venta de entradas</Button>
-                <Button x:Name="consultaOcupacionButton" >Consulta ocupacón de salas</Button>
+                <Button x:Name="consultaOcupacionButton" >Consulta ocupacíon de salas</Button>
                 </StackPanel>
                 <ListBox x:Name="cartelaCissneLisBox" ItemsSource="{Binding}">
                     <ListBox.ItemTemplate>

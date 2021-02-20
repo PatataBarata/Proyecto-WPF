@@ -7,12 +7,14 @@
         mc:Ignorable="d"
         Title="Gestion de Salas" Height="450" Width="800">
     <DockPanel >
-        <StackPanel x:Name="CambiarSalasStackPanel" DockPanel.Dock="Right" Height="200" Width="350"  >        
+        <StackPanel x:Name="CambiarSalasStackPanel" DockPanel.Dock="Right" Height="200" Width="350" Visibility="Collapsed" DataContext="{Binding Path=NuevaSala}" >        
         <TextBlock>Sala numero:</TextBlock>
         <TextBox x:Name="NumeroSalaTexBox" Text="{Binding Path=NumeroSala}" ></TextBox>
         <TextBlock>Numero de butacas:</TextBlock>
             <TextBox x:Name="asientosSalaTexBox" Text="{Binding Path=TotalButacas}"></TextBox>
-            <Button x:Name="aleatorioButtonSalas" >
+            <TextBlock>Disponibles:</TextBlock>
+            <TextBox x:Name="disponibleSalaTexBox" Text="{Binding Path=Disponible}"></TextBox>
+            <Button x:Name="aleatorioButtonSalas" Click="aleatorioButtonSalas_Click" >
                 <TextBlock x:Name="aleatorioButtonSalasTextBlock"></TextBlock>
             </Button>
             <Button x:Name="CancelarButton" Click="CancelarButton_Click">Cancelar</Button>
@@ -22,7 +24,7 @@
             <Button x:Name="añadirNuevaSalaButton" Click="añadirNuevaSalaButton_Click">Añadir nueva sala</Button>
             <Button x:Name="modificarSalaButton" Click="modificarSalaButton_Click" >Modificar sala</Button>
         </StackPanel>
-        <DataGrid x:Name="gestionSalasLixtBox" ItemsSource="{Binding Path=Sala}" AutoGenerateColumns="False" ColumnWidth="*">
+        <DataGrid x:Name="gestionSalasLixtBox" ItemsSource="{Binding Path=ListaSalas}" AutoGenerateColumns="False" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre de la Sala"
                                     Binding="{Binding Path=NumeroSala }"></DataGridTextColumn>

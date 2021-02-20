@@ -10,7 +10,7 @@ namespace Proyecto_WPF
     class Sesion : INotifyPropertyChanged
 
     {
-   
+        private int idSesion;
         private int idPelicula;
         private int idSala;
         private string hora;
@@ -27,8 +27,9 @@ namespace Proyecto_WPF
             this.sala = sala;
         }
 
-        public Sesion(int idPelicula, int idSala, string hora, Pelicula pelicula, Sala sala)
+        public Sesion(int idSesion, int idPelicula, int idSala, string hora, Pelicula pelicula, Sala sala)
         {
+            this.idSesion = idSesion;
             this.idPelicula = idPelicula;
             this.idSala = idSala;
             this.hora = hora;
@@ -45,7 +46,6 @@ namespace Proyecto_WPF
                 this.NotifyPropertyChanged("Pelicula");
             }
         }
-
 
         public Sala Sala
         {
@@ -79,8 +79,14 @@ namespace Proyecto_WPF
                 this.NotifyPropertyChanged("IdSala");
             }
         }
-
-
+        public int IdSesion
+        {
+            get => idSesion; set
+            {
+                this.idSesion = value;
+                this.NotifyPropertyChanged("IdSesion");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)

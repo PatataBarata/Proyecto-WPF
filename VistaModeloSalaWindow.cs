@@ -13,6 +13,7 @@ namespace Proyecto_WPF
         private Sala nuevaSala;
         private Sala salaSeleccionada;
         private ObservableCollection<Sala> salas;
+
         private SqliteDatos sqliteDatos;
         
         public VistaModeloSalaWindow()

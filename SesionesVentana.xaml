@@ -26,13 +26,14 @@
         <Button x:Name="modificarSesionButton" Click="modificarSesionButton_Click">Modificar sesion</Button>
         <Button x:Name="eliminarSesionButton" Click="eliminarSesionButton_Click">Eliminar sesion</Button>
         </StackPanel>
-    <DataGrid x:Name="gestionSalasLixtBox" ItemsSource="{Binding}" AutoGenerateColumns="False" ColumnWidth="*">
+    <DataGrid x:Name="gestionSalasLixtBox" ItemsSource="{Binding Path=Sesiones}" SelectedItem="{Binding Path=SesionSelecionada}" AutoGenerateColumns="False" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Sesion"
                                     Binding="{Binding Path=numeroSala}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Sala"
                                     Binding="{Binding Path=totalButacas}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Pelicula"></DataGridTextColumn>
+                <DataGridTextColumn Header="Pelicula" Binding="{Binding Path=Pelicula.Titulo}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Cartel" Binding="{Binding Path=Pelicula.Cartel}" ></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
