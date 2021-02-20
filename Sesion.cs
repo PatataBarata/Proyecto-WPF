@@ -10,20 +10,30 @@ namespace Proyecto_WPF
     class Sesion : INotifyPropertyChanged
 
     {
+   
+        private int idPelicula;
+        private int idSala;
+        private string hora;
         private Pelicula pelicula;
         private Sala sala;
-        private string hora;
-        private enum sesion {primera, segunda, tercera }
-
         public Sesion()
         {
         }
 
-        public Sesion(Pelicula pelicula, Sala sala, string hora)
+        public Sesion(string hora, Pelicula pelicula, Sala sala)
         {
-            Pelicula = pelicula;
-            Sala = sala;
-            Hora = hora;
+            this.hora = hora;
+            this.pelicula = pelicula;
+            this.sala = sala;
+        }
+
+        public Sesion(int idPelicula, int idSala, string hora, Pelicula pelicula, Sala sala)
+        {
+            this.idPelicula = idPelicula;
+            this.idSala = idSala;
+            this.hora = hora;
+            this.pelicula = pelicula;
+            this.sala = sala;
         }
 
         public Pelicula Pelicula
@@ -53,7 +63,23 @@ namespace Proyecto_WPF
                 this.NotifyPropertyChanged("Hora");
             }
         }
-        
+        public int IdPelicula
+        {
+            get => idPelicula; set
+            {
+                this.idPelicula = value;
+                this.NotifyPropertyChanged("IdPelicula");
+            }
+        }
+        public int IdSala
+        {
+            get => idSala; set
+            {
+                this.idSala = value;
+                this.NotifyPropertyChanged("IdSala");
+            }
+        }
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;

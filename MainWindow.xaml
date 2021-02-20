@@ -62,7 +62,7 @@
                  <Button Margin="10" x:Name="SesionesButton" Click="SesionesButton_Click">Gertionar Sesiones</Button>
                 </StackPanel>
                 <ListBox x:Name="cartelaCineLisBox"
-                         ItemsSource="{Binding}"
+                         ItemsSource="{Binding Path=Peliculas}"
                          ItemTemplate="{StaticResource PlantillaPeliculasLixbox}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>

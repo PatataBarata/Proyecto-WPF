@@ -9,19 +9,26 @@ namespace Proyecto_WPF
 {
     class Venta : INotifyPropertyChanged
     {
-        private Sesion sesion;
+        private int idSesion;
         private int cantidad;
         private string medioPago;
+        private Sesion sesion;
 
         public Venta()
         {
         }
 
-        public Venta(Sesion sesion, int cantidad, string medioPago)
+        public Venta(int idSesion, int cantidad, string medioPago)
         {
-            Sesion = sesion;
-            Cantidad = cantidad;
-            MedioPago = medioPago;
+            this.idSesion = idSesion;
+            this.cantidad = cantidad;
+            this.medioPago = medioPago;
+            
+        }
+
+        public Venta(int idSesion, int cantidad, string medioPago, Sesion sesion) : this(idSesion, cantidad, medioPago)
+        {
+            this.sesion = sesion;
         }
 
         public Sesion Sesion
@@ -31,6 +38,14 @@ namespace Proyecto_WPF
             {
                 this.sesion = value;
                 this.NotifyPropertyChanged("Sesion");
+            }
+        }
+        public int IdSesion
+        {
+            get => idSesion; set
+            {
+                this.idSesion = value;
+                this.NotifyPropertyChanged("IdSesion");
             }
         }
 

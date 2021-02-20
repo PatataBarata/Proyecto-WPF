@@ -22,26 +22,23 @@ namespace Proyecto_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        SqliteDatos sqliteDatos;
+        VistaModeloMainWindow vm;
         public MainWindow()
         {
-           // ApiRestPeliculas apiRest = new ApiRestPeliculas();
-            //  ObservableCollection<Pelicula> pelicula= apiRest.GetPelicula();
+            vm = new VistaModeloMainWindow();
 
-            sqliteDatos = new SqliteDatos(); 
             InitializeComponent();
-            ObservableCollection<Pelicula> pelicula= sqliteDatos.GetPeliculas();
-            cartelaCineLisBox.DataContext = pelicula;
+            DataContext=vm;
 
         }
 
         private void SalasButton_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             SalasVentana salaVentana = new SalasVentana();
             salaVentana.Owner = this;
             //abre ventana de Salas  
-            salaVentana.ShowInTaskbar = false;
-            salaVentana.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            salaVentana.ShowInTaskbar = false;//puede ir en el XAML
+            salaVentana.WindowStartupLocation = WindowStartupLocation.CenterOwner;//puede ir en el XAML
             salaVentana.Show();
         }
 
@@ -49,13 +46,10 @@ namespace Proyecto_WPF
         {
             SesionesVentana sesionesVentana = new SesionesVentana();
             sesionesVentana.Owner = this;
-            //abre ventana de Salas  
-            sesionesVentana.ShowInTaskbar = false;
-            sesionesVentana.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            sesionesVentana.Show();
-
-
             //abre ventana de Sesiones
+            sesionesVentana.ShowInTaskbar = false;//puede ir en el XAML
+            sesionesVentana.WindowStartupLocation = WindowStartupLocation.CenterOwner;//puede ir en el XAML
+            sesionesVentana.Show();
         }
     }
 }

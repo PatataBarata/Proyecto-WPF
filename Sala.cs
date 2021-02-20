@@ -14,6 +14,8 @@ namespace Proyecto_WPF
         private bool completa;
 
         private int numeroButacaOcupadas;
+        private const int TOTALSESIONES = 3;
+        private bool todasLasSesiones = false;
         private int butacasDisponibles { get { return totalButacas - numeroButacaOcupadas; } }
      
         public Sala()

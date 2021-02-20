@@ -37,6 +37,16 @@ namespace Proyecto_WPF
             }
         }
 
+        internal ObservableCollection<Sesion> GetSesion()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal ObservableCollection<Sala> GetSalas()
+        {
+            throw new NotImplementedException();
+        }
+
         internal ObservableCollection<Pelicula> GetPeliculas()
         {
                 ObservableCollection<Pelicula> peliculas = new ObservableCollection<Pelicula>();
@@ -114,8 +124,8 @@ namespace Proyecto_WPF
         private void InsertarSala(Sala sala)
         {           
                 connection.Open();
-                comando.Connection.CreateCommand();
-                comando.CommandText = "INSERT INTO @tabla VALUES (@numero, @capacidad, @disponible)";
+                comando=connection.CreateCommand();
+                comando.CommandText = "INSERT INTO salas VALUES (@numero, @capacidad, @disponible)";
                
                 comando.Parameters.Add("@numero", SqliteType.Text);
                 comando.Parameters.Add("@capacidad", SqliteType.Integer);
@@ -123,29 +133,57 @@ namespace Proyecto_WPF
                 
                 comando.Parameters["@numero"].Value = sala.NumeroSala;
                 comando.Parameters["@capacidad"].Value = sala.TotalButacas;
-                comando.Parameters["@disponible"].Value = sala.Completa;//ver si da error o parsearlo
+                comando.Parameters["@disponible"].Value = sala.Completa;
                
                 comando.ExecuteNonQuery();
                 connection.Close();           
         }
+        private void InsertarSesion(Sesion sesion)
+        {
+            connection.Open();
+            comando = connection.CreateCommand();
+            comando.CommandText = "INSERT INTO sesiones VALUES (@pelicula, @sala, @hora)";
 
+            comando.Parameters.Add("@pelicula", SqliteType.Integer);
+            comando.Parameters.Add("@sala", SqliteType.Integer);
+            comando.Parameters.Add("@hora", SqliteType.Text);
+
+            comando.Parameters["@pelicula"].Value = sesion.IdPelicula;
+            comando.Parameters["@sala"].Value = sesion.IdSala;
+            comando.Parameters["@hora"].Value = sesion.Hora;
+
+            comando.ExecuteNonQuery();
+            connection.Close();
+        }
+        private void InsertarVentas(Venta venta)
+        {
+            connection.Open();
+            comando = connection.CreateCommand();
+            comando.CommandText = "INSERT INTO ventas VALUES (@sesion, @cantidad, @pago)";
+
+            comando.Parameters.Add("@sesion", SqliteType.Integer);
+            comando.Parameters.Add("@cantidad", SqliteType.Integer);
+            comando.Parameters.Add("@pago", SqliteType.Text);
+
+            comando.Parameters["@sesion"].Value = venta.Sesion;
+            comando.Parameters["@cantidad"].Value = venta.Cantidad;
+            comando.Parameters["@pago"].Value = venta.MedioPago;
+
+            comando.ExecuteNonQuery();
+            connection.Close();
+        }
         private bool estaEnPeliculas(Pelicula peli) {
             bool confirmacion = false;
             connection.Open();
             comando = connection.CreateCommand();
             comando.CommandText = "SELECT * FROM peliculas WHERE idPelicula=" + peli.Id;
-            SqliteDataReader leer = comando.ExecuteReader();
-            
+            SqliteDataReader leer = comando.ExecuteReader();          
             if (leer.HasRows)
-            {
-                confirmacion = true;
-            }
+                confirmacion = true;          
          
             connection.Close();
-
             return confirmacion;
         }
-
         private bool estanActualizadas() {
             bool actualizadas = false;
             DateTime fechaDeHoy = DateTime.Now.Date;

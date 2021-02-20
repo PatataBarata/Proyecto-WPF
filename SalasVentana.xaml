@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Gestion de Salas" Height="450" Width="800">
     <DockPanel >
-        <StackPanel x:Name="CambiarSalasStackPanel" DockPanel.Dock="Right" Height="200" Width="350" Visibility="Collapsed" >        
+        <StackPanel x:Name="CambiarSalasStackPanel" DockPanel.Dock="Right" Height="200" Width="350"  >        
         <TextBlock>Sala numero:</TextBlock>
         <TextBox x:Name="NumeroSalaTexBox" Text="{Binding Path=NumeroSala}" ></TextBox>
         <TextBlock>Numero de butacas:</TextBlock>
@@ -19,16 +19,18 @@
             
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="añadirNuevaSalaButton" Click="añadirNuevaSalaButton_Click" >Añadir nueva sala</Button>
+            <Button x:Name="añadirNuevaSalaButton" Click="añadirNuevaSalaButton_Click">Añadir nueva sala</Button>
             <Button x:Name="modificarSalaButton" Click="modificarSalaButton_Click" >Modificar sala</Button>
         </StackPanel>
-        <DataGrid x:Name="gestionSalasLixtBox" ItemsSource="{Binding}" AutoGenerateColumns="False" ColumnWidth="*">
-            
+        <DataGrid x:Name="gestionSalasLixtBox" ItemsSource="{Binding Path=Sala}" AutoGenerateColumns="False" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre de la Sala"
-                                    Binding="{Binding Path=NumeroSala}"></DataGridTextColumn>
+                                    Binding="{Binding Path=NumeroSala }"></DataGridTextColumn>
                 <DataGridTextColumn Header="Numero de butacas"
                                     Binding="{Binding Path=TotalButacas}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Disponible" 
+                                    Binding="{Binding Path=Disponible}"
+                                    ></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

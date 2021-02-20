@@ -17,7 +17,7 @@ namespace Proyecto_WPF
     /// <summary>
     /// Lógica de interacción para Salas.xaml
     /// </summary>
-    public partial class SalasVentana : Window
+    public partial class SalasVentana : Window 
     {
         public SalasVentana()
         {
