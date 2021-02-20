@@ -22,14 +22,15 @@ namespace Proyecto_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        SqliteDatos sqliteDatos;
         public MainWindow()
         {
             ApiRestPeliculas apiRest = new ApiRestPeliculas();
             ObservableCollection<Pelicula> pelicula= apiRest.GetPelicula();
             InitializeComponent();
-            cartelaCineLisBox.DataContext = pelicula;   
-        
-            
+            cartelaCineLisBox.DataContext = pelicula;
+            sqliteDatos = new SqliteDatos(); 
+
         }
 
         private void SalasButton_Click(object sender, RoutedEventArgs e)
