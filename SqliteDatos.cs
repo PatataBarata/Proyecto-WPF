@@ -13,7 +13,7 @@ namespace Proyecto_WPF
 
         private readonly SqliteConnection connection;
         private SqliteCommand comando;
-        ObservableCollection<Pelicula> peliculas;
+       
 
 
 
@@ -25,7 +25,7 @@ namespace Proyecto_WPF
         }
         private void actualizarBD() {
 
-            if (!estanActualizadas())//no se guarda la variable en usuario
+            if (!estanActualizadas())
             {
                 ApiRestPeliculas apiRest = new ApiRestPeliculas();
                 ObservableCollection<Pelicula> peliculas = apiRest.GetPelicula();
@@ -33,10 +33,25 @@ namespace Proyecto_WPF
                 {
                     InsertarPelicula(pelicula);
                 } 
-            }
             //mostrar mensaje que se han actualizado la base de datos?
+            }
         }
 
+        internal ObservableCollection<Pelicula> GetPeliculas()
+        {
+                ObservableCollection<Pelicula> peliculas = new ObservableCollection<Pelicula>();
+            connection.Open();
+            comando = connection.CreateCommand();
+            comando.CommandText = "SELECT * FROM peliculas ";
+            SqliteDataReader leer = comando.ExecuteReader();
+            while (leer.Read())
+            {
+                Pelicula pelicula = new Pelicula(leer.GetInt32(0), leer.GetString(1), leer.GetString(2), leer.GetInt32(3), leer.GetString(4), leer.GetString(5));
+                peliculas.Add(pelicula);
+
+            }
+            return peliculas;
+        }
         private void CrearTablas()
         {
             connection.Open();
@@ -74,10 +89,10 @@ namespace Proyecto_WPF
         private void InsertarPelicula(Pelicula pelicula) {     
             
                
-              if (noEstaEnPeliculas(pelicula))
+              if (!estaEnPeliculas(pelicula))
             { 
             connection.Open();
-            comando.Connection.CreateCommand();            
+            comando = connection.CreateCommand();            
             comando.CommandText = "INSERT INTO peliculas VALUES (@idPelicula ,@titulo, @cartel,@año,@genero, @calificacion)";//da  error porque dice que tengo un comando abierto
             comando.Parameters.Add("@idPelicula", SqliteType.Integer);
             comando.Parameters.Add("@titulo",SqliteType.Text);
@@ -114,24 +129,18 @@ namespace Proyecto_WPF
                 connection.Close();           
         }
 
-        private ObservableCollection<Pelicula> peliculasDelCine()
-        {
-
-
-            return peliculas;
-        }
-
-        private bool noEstaEnPeliculas(Pelicula peli) {
+        private bool estaEnPeliculas(Pelicula peli) {
             bool confirmacion = false;
             connection.Open();
-            comando.Connection.CreateCommand();
+            comando = connection.CreateCommand();
             comando.CommandText = "SELECT * FROM peliculas WHERE idPelicula=" + peli.Id;
+            SqliteDataReader leer = comando.ExecuteReader();
             
-            if (comando.ExecuteReader().HasRows)
+            if (leer.HasRows)
             {
                 confirmacion = true;
             }
-            comando.Cancel();
+         
             connection.Close();
 
             return confirmacion;
@@ -140,10 +149,12 @@ namespace Proyecto_WPF
         private bool estanActualizadas() {
             bool actualizadas = false;
             DateTime fechaDeHoy = DateTime.Now.Date;
-
             if ((Properties.Settings.Default.Fecha) == fechaDeHoy)
+            {
                 actualizadas = true;
-            (Properties.Settings.Default.Fecha) = fechaDeHoy;
+            }
+                Properties.Settings.Default.Fecha= fechaDeHoy;
+                Properties.Settings.Default.Save();
             return actualizadas;
         }
     }

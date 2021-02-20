@@ -107,6 +107,9 @@
     </Compile>
     <Compile Include="SqliteDatos.cs" />
     <Compile Include="Venta.cs" />
+    <Compile Include="VistaModeloMainWindow.cs" />
+    <Compile Include="VistaModeloSalaWindow.cs" />
+    <Compile Include="VistaModeloSesionesWindow.cs" />
     <Page Include="ConsulatSesion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

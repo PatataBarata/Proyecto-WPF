@@ -25,11 +25,13 @@ namespace Proyecto_WPF
         SqliteDatos sqliteDatos;
         public MainWindow()
         {
-            ApiRestPeliculas apiRest = new ApiRestPeliculas();
-            ObservableCollection<Pelicula> pelicula= apiRest.GetPelicula();
-            InitializeComponent();
-            cartelaCineLisBox.DataContext = pelicula;
+           // ApiRestPeliculas apiRest = new ApiRestPeliculas();
+            //  ObservableCollection<Pelicula> pelicula= apiRest.GetPelicula();
+
             sqliteDatos = new SqliteDatos(); 
+            InitializeComponent();
+            ObservableCollection<Pelicula> pelicula= sqliteDatos.GetPeliculas();
+            cartelaCineLisBox.DataContext = pelicula;
 
         }
 
