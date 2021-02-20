@@ -8,7 +8,7 @@ namespace Proyecto_WPF
     internal class Pelicula : INotifyPropertyChanged
     {
         private string titulo;
-        private float duracion;
+       
         private string genero;
         private string calificacion;
         private string cartel;
@@ -20,15 +20,16 @@ namespace Proyecto_WPF
         {
        
         }
-
-        public Pelicula(string titulo, float duracion, string genero, string calificacion, string cartel, int año)
+        // (@idPelicula ,@titulo, @cartel,@año,@genero, @calificacion)
+        public Pelicula(int id, string titulo, string cartel, int año, string genero, string calificacion)
         {
             this.Titulo = titulo;
-            this.Duracion = duracion;
+        
             this.Genero = genero;
             this.Calificacion = calificacion;
             this.Cartel = cartel;
             this.Año = año;
+            this.Id = id;
         }
 
         public string Titulo
@@ -39,12 +40,7 @@ namespace Proyecto_WPF
         }
 
 
-        public float Duracion { get => duracion; set
-            {
-                this.duracion = value;
-                this.NotifyPropertyChanged("Duracion");
-            }
-        }
+    
         public string Genero { get => genero; set
             {
                 this.genero = value;
@@ -69,7 +65,14 @@ namespace Proyecto_WPF
                 this.NotifyPropertyChanged("Año");
             }
         }
-
+        public int Id
+        {
+            get => id; set
+            {
+                this.id = value;
+                this.NotifyPropertyChanged("Id");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
         {

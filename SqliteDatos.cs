@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +13,28 @@ namespace Proyecto_WPF
 
         private readonly SqliteConnection connection;
         private SqliteCommand comando;
-        
+        ObservableCollection<Pelicula> peliculas;
+
+
 
         public SqliteDatos()
         {
             connection = new SqliteConnection("Data Source=Cinespepe.db");
             CrearTablas();
+            actualizarBD();
+        }
+        private void actualizarBD() {
+
+            if (!estanActualizadas())//no se guarda la variable en usuario
+            {
+                ApiRestPeliculas apiRest = new ApiRestPeliculas();
+                ObservableCollection<Pelicula> peliculas = apiRest.GetPelicula();
+                foreach (Pelicula pelicula in peliculas)
+                {
+                    InsertarPelicula(pelicula);
+                } 
+            }
+            //mostrar mensaje que se han actualizado la base de datos?
         }
 
         private void CrearTablas()
@@ -54,25 +71,21 @@ namespace Proyecto_WPF
             connection.Close();
         }
 
-        private void InsertarPelicula(Pelicula pelicula) {
-
-           
+        private void InsertarPelicula(Pelicula pelicula) {     
+            
+               
+              if (noEstaEnPeliculas(pelicula))
+            { 
             connection.Open();
             comando.Connection.CreateCommand();            
-            comando.CommandText = "SELECT COUNT(ID) FROM peliculas WHERE idPelicula="+pelicula.id;
-            comando.ExecuteReader().Equals(1); 
-                
-                if (comando.ExecuteReader().Equals(1))// comprueba si la peli ya existe
-            {
-
-            comando.CommandText = "INSERT INTO @tabla VALUES (@id ,@titulo, @cartel,@anyo,@genero, @calificacion)";
-            comando.Parameters.Add("@id", SqliteType.Integer);
+            comando.CommandText = "INSERT INTO peliculas VALUES (@idPelicula ,@titulo, @cartel,@año,@genero, @calificacion)";//da  error porque dice que tengo un comando abierto
+            comando.Parameters.Add("@idPelicula", SqliteType.Integer);
             comando.Parameters.Add("@titulo",SqliteType.Text);
-            comando.Parameters.Add("@carter", SqliteType.Text);
+            comando.Parameters.Add("@cartel", SqliteType.Text);
             comando.Parameters.Add("@genero", SqliteType.Text);
-            comando.Parameters.Add("@anyo", SqliteType.Integer);
+            comando.Parameters.Add("@año", SqliteType.Integer);
             comando.Parameters.Add("@calificacion", SqliteType.Text);
-            comando.Parameters["@id"].Value = pelicula.id;
+            comando.Parameters["@idPelicula"].Value = pelicula.Id;
             comando.Parameters["@titulo"].Value = pelicula.Titulo;
             comando.Parameters["@cartel"].Value = pelicula.Cartel;
             comando.Parameters["@genero"].Value = pelicula.Genero;
@@ -100,5 +113,40 @@ namespace Proyecto_WPF
                 comando.ExecuteNonQuery();
                 connection.Close();           
         }
+
+        private ObservableCollection<Pelicula> peliculasDelCine()
+        {
+
+
+            return peliculas;
+        }
+
+        private bool noEstaEnPeliculas(Pelicula peli) {
+            bool confirmacion = false;
+            connection.Open();
+            comando.Connection.CreateCommand();
+            comando.CommandText = "SELECT * FROM peliculas WHERE idPelicula=" + peli.Id;
+            
+            if (comando.ExecuteReader().HasRows)
+            {
+                confirmacion = true;
+            }
+            comando.Cancel();
+            connection.Close();
+
+            return confirmacion;
+        }
+
+        private bool estanActualizadas() {
+            bool actualizadas = false;
+            DateTime fechaDeHoy = DateTime.Now.Date;
+
+            if ((Properties.Settings.Default.Fecha) == fechaDeHoy)
+                actualizadas = true;
+            (Properties.Settings.Default.Fecha) = fechaDeHoy;
+            return actualizadas;
+        }
     }
+
+    
 }

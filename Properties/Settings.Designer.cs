@@ -40,5 +40,16 @@ namespace Proyecto_WPF.Properties {
                 return ((string)(this["GetPeliculas"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime Fecha {
+            get {
+                return ((global::System.DateTime)(this["Fecha"]));
+            }
+            set {
+                this["Fecha"] = value;
+            }
+        }
     }
 }
