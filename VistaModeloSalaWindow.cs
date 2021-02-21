@@ -44,6 +44,10 @@ namespace Proyecto_WPF
                 this.NotifyPropertyChanged("NuevaSala");
             }
         }
+        public bool HaySalaSeleccionada()
+        {
+            return SalaSeleccionada != null;
+        }
         public Sala SalaSeleccionada
         {
             get => salaSeleccionada; set

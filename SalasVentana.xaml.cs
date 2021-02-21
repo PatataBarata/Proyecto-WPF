@@ -33,9 +33,7 @@ namespace Proyecto_WPF
         }
         private void modificarSalaButton_Click(object sender, RoutedEventArgs e)
         {
-
-
-            CambiarSalasStackPanel.Visibility = Visibility.Visible;
+            modificarSalasStackPanel.Visibility = Visibility.Visible;
             aleatorioButtonSalasTextBlock.Text = modificarSalaButton.Content.ToString();
         }
     
@@ -58,10 +56,5 @@ namespace Proyecto_WPF
             modificarSalasStackPanel.Visibility = Visibility.Visible;
         }
 
-        private void ModificarCancelarButton_Click(object sender, RoutedEventArgs e)
-        {
-            CambiarSalasStackPanel.Visibility = Visibility.Collapsed;
-            vMS.cancelarAccion();
-        }
     }
 }

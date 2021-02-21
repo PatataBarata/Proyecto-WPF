@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Icon="/imagen/butaca.png"
         Title="Gestion de Salas" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="modificarButton">
+            <Setter Property="IsEnabled" Value="True"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=gestionSalasLixtBox, Path=SelectedItem}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <DockPanel >
         <StackPanel x:Name="CambiarSalasStackPanel" DockPanel.Dock="Right" Height="200" Width="350"  DataContext="{Binding Path=NuevaSala}" Visibility="Collapsed" >        
         <TextBlock>Sala numero:</TextBlock>
@@ -36,12 +46,12 @@
             <Button x:Name="modificarAleatorioButtonSalas" Click="modificarAleatorioButtonSalas_Click" >
                 <TextBlock x:Name="modificarAleatorioButtonSalasTextBlock"></TextBlock>
             </Button>
-            <Button x:Name="ModificarCancelarButton" Click="ModificarCancelarButton_Click">Cancelar</Button>
+            <Button x:Name="ModificarCancelarButton" Click="CancelarButton_Click">Cancelar</Button>
 
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="añadirNuevaSalaButton" Click="añadirNuevaSalaButton_Click">Añadir nueva sala</Button>
-            <Button x:Name="modificarSalaButton" Click="modificarSalaButton_Click" IsEnabled="False">Modificar sala</Button>
+            <Button x:Name="modificarSalaButton" Click="modificarSalaButton_Click" Style="{StaticResource modificarButton}" >Modificar sala</Button>
         </StackPanel>
         <DataGrid x:Name="gestionSalasLixtBox" ItemsSource="{Binding Path=ListaSalas}" AutoGenerateColumns="False" ColumnWidth="*">
             <DataGrid.Columns>
