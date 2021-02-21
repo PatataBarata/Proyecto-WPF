@@ -9,34 +9,30 @@ namespace Proyecto_WPF
 {
     public class Sala : INotifyPropertyChanged
     {
+        private int idSala;
         private string numeroSala;
         private int totalButacas;
         private bool disponible;
 
         private int numeroButacaOcupadas;
         private const int TOTALSESIONES = 3;
-        private bool todasLasSesiones = false;
-        private int numeroSesiones=0;
+        private bool todasLasSesiones = false;//Lo cargo desde la BD
+        
         private int butacasDisponibles { get { return totalButacas - numeroButacaOcupadas; } }
      
         public Sala()
         {
         }
 
-        public Sala(string numeroSala, int totalButacas, bool disponble)
+        public Sala(int idSala, string numeroSala, int totalButacas, bool disponble)
         {
             NumeroSala = numeroSala;
             TotalButacas = totalButacas;
-            Disponible = true;
-            
+            Disponible = disponble;
+            IdSala = idSala;
         }
 
-        public int contarSesiones() {
-
-
-
-            return numeroSesiones;
-        }
+   
         public string NumeroSala
         {
             get => numeroSala;
@@ -46,7 +42,15 @@ namespace Proyecto_WPF
                 this.NotifyPropertyChanged("NumeroSala");
             }
         }
-      
+
+        public int IdSala
+        {
+            get => idSala; set
+            {
+                this.idSala = value;
+                this.NotifyPropertyChanged("IdSala");
+            }
+        }
 
         public int TotalButacas
         {

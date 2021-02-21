@@ -17,7 +17,7 @@ namespace Proyecto_WPF
     /// <summary>
     /// Lógica de interacción para Salas.xaml
     /// </summary>
-    public partial class SalasVentana : Window 
+    public partial class SalasVentana : Window
     {
         VistaModeloSalaWindow vMS;
         public SalasVentana()
@@ -34,20 +34,16 @@ namespace Proyecto_WPF
         private void modificarSalaButton_Click(object sender, RoutedEventArgs e)
         {
 
-            if (true)//si ha seleccionado una sala para modificar¨
-            {
-                CambiarSalasStackPanel.Visibility = Visibility.Visible;
+
+            CambiarSalasStackPanel.Visibility = Visibility.Visible;
             aleatorioButtonSalasTextBlock.Text = modificarSalaButton.Content.ToString();
         }
-            else{
-                
-            MessageBox.Show("Elige una sala para modificar");}
-}
+    
         
         private void CancelarButton_Click(object sender, RoutedEventArgs e)
         {
-            CambiarSalasStackPanel.Visibility = Visibility.Collapsed;
-            //limpiar los campos de los TextBox
+            CambiarSalasStackPanel.Visibility = Visibility.Collapsed;      
+            vMS.cancelarAccion();
         }
 
         private void aleatorioButtonSalas_Click(object sender, RoutedEventArgs e)
@@ -55,6 +51,17 @@ namespace Proyecto_WPF
            if (vMS.ComprobarNuevaSala())
 
                 vMS.AñadirSala();
+        }
+
+        private void modificarAleatorioButtonSalas_Click(object sender, RoutedEventArgs e)
+        {
+            modificarSalasStackPanel.Visibility = Visibility.Visible;
+        }
+
+        private void ModificarCancelarButton_Click(object sender, RoutedEventArgs e)
+        {
+            CambiarSalasStackPanel.Visibility = Visibility.Collapsed;
+            vMS.cancelarAccion();
         }
     }
 }

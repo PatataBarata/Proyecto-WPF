@@ -96,6 +96,7 @@
     <Compile Include="ConsulatSesion.xaml.cs">
       <DependentUpon>ConsulatSesion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConvierteEnable.cs" />
     <Compile Include="Pelicula.cs" />
     <Compile Include="Sala.cs" />
     <Compile Include="SalasVentana.xaml.cs">

@@ -39,7 +39,7 @@ namespace Proyecto_WPF
             //abre ventana de Salas  
             salaVentana.ShowInTaskbar = false;//puede ir en el XAML
             salaVentana.WindowStartupLocation = WindowStartupLocation.CenterOwner;//puede ir en el XAML
-            salaVentana.Show();
+            salaVentana.ShowDialog();
         }
 
         private void SesionesButton_Click(object sender, RoutedEventArgs e)
@@ -49,7 +49,7 @@ namespace Proyecto_WPF
             //abre ventana de Sesiones
             sesionesVentana.ShowInTaskbar = false;//puede ir en el XAML
             sesionesVentana.WindowStartupLocation = WindowStartupLocation.CenterOwner;//puede ir en el XAML
-            sesionesVentana.Show();
+            sesionesVentana.ShowDialog();
         }
     }
 }

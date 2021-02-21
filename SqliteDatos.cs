@@ -48,7 +48,7 @@ namespace Proyecto_WPF
             SqliteDataReader leer = comando.ExecuteReader();
             while (leer.Read())
             {
-                Sala sala = new Sala( leer.GetString(0), leer.GetInt32(1), leer.GetBoolean(2));
+                Sala sala = new Sala(leer.GetInt32(0), leer.GetString(1), leer.GetInt32(2), leer.GetBoolean(3)); //Todo para guardar el id tambien y gestionarlo
                 //(string numeroSala, int totalButacas, bool completa)
                 salas.Add(sala);
 
@@ -200,9 +200,9 @@ namespace Proyecto_WPF
             {
                 connection.Open();
                 comando = connection.CreateCommand();
-                comando.CommandText = "INSERT INTO salas VALUES (@idSala @numero, @capacidad, @disponible)";
+                comando.CommandText = "INSERT INTO salas VALUES (Null, @numero, @capacidad, @disponible)";
 
-                comando.Parameters.Add("@idSala", SqliteType.Integer);
+                
                 comando.Parameters.Add("@numero", SqliteType.Text);
                 comando.Parameters.Add("@capacidad", SqliteType.Integer);
                 comando.Parameters.Add("@disponible", SqliteType.Integer);

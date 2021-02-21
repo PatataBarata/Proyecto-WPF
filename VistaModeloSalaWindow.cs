@@ -19,7 +19,7 @@ namespace Proyecto_WPF
         public VistaModeloSalaWindow()
         {
             sqliteDatos = new SqliteDatos();
-            nuevaSala = new Sala() ;
+            nuevaSala = new Sala { Disponible = true };
             listaSalas = sqliteDatos.GetSalas();
        
         }
@@ -52,6 +52,12 @@ namespace Proyecto_WPF
                 this.NotifyPropertyChanged("SalaSeleccionada");
             }
         }
+
+        internal void cancelarAccion()
+        {
+            NuevaSala = new Sala();
+        }
+
         public ObservableCollection<Sala> ListaSalas
         {
             get => listaSalas; set
