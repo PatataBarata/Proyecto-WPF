@@ -5,15 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_WPF"
         mc:Ignorable="d"
+        Icon="/imagen/butaca.png"
         Title="Gestion de Salas" Height="450" Width="800">
     <DockPanel >
-        <StackPanel x:Name="CambiarSalasStackPanel" DockPanel.Dock="Right" Height="200" Width="350" Visibility="Collapsed" DataContext="{Binding Path=NuevaSala}" >        
+        <StackPanel x:Name="CambiarSalasStackPanel" DockPanel.Dock="Right" Height="200" Width="350"  DataContext="{Binding Path=NuevaSala}" >        
         <TextBlock>Sala numero:</TextBlock>
         <TextBox x:Name="NumeroSalaTexBox" Text="{Binding Path=NumeroSala}" ></TextBox>
         <TextBlock>Numero de butacas:</TextBlock>
             <TextBox x:Name="asientosSalaTexBox" Text="{Binding Path=TotalButacas}"></TextBox>
+            <StackPanel Orientation="Horizontal">
             <TextBlock>Disponibles:</TextBlock>
-            <TextBox x:Name="disponibleSalaTexBox" Text="{Binding Path=Disponible}"></TextBox>
+                
+            <CheckBox Margin="20,0" x:Name="disponibleSalaTexBox" IsChecked="{Binding Path=Disponible}" ></CheckBox>
+            </StackPanel>
             <Button x:Name="aleatorioButtonSalas" Click="aleatorioButtonSalas_Click" >
                 <TextBlock x:Name="aleatorioButtonSalasTextBlock"></TextBlock>
             </Button>
@@ -30,9 +34,11 @@
                                     Binding="{Binding Path=NumeroSala }"></DataGridTextColumn>
                 <DataGridTextColumn Header="Numero de butacas"
                                     Binding="{Binding Path=TotalButacas}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Disponible" 
+                <DataGridCheckBoxColumn Header="Disponible" 
                                     Binding="{Binding Path=Disponible}"
-                                    ></DataGridTextColumn>
+                                    >
+                    
+                </DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

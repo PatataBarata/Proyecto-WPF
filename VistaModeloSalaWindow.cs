@@ -12,18 +12,30 @@ namespace Proyecto_WPF
     {
         private Sala nuevaSala;
         private Sala salaSeleccionada;
-        private ObservableCollection<Sala> salas;
+        private ObservableCollection<Sala> listaSalas;
 
         private SqliteDatos sqliteDatos;
         
         public VistaModeloSalaWindow()
         {
             sqliteDatos = new SqliteDatos();
-            nuevaSala = new Sala();
-            salas = sqliteDatos.GetSalas();
+            nuevaSala = new Sala() ;
+            listaSalas = sqliteDatos.GetSalas();
        
         }
-
+        public void AñadirSala()
+        {
+            ListaSalas.Add(NuevaSala);
+            sqliteDatos.InsertarSala(NuevaSala);
+            NuevaSala = new Sala();
+        }
+        public bool ComprobarNuevaSala()
+        {
+            if (NuevaSala.TotalButacas!= 0 || NuevaSala.NumeroSala != "")
+                return true;
+            else
+                return false;
+        }
         public Sala NuevaSala
         {
             get => nuevaSala; set
@@ -38,6 +50,14 @@ namespace Proyecto_WPF
             {
                 this.salaSeleccionada = value;
                 this.NotifyPropertyChanged("SalaSeleccionada");
+            }
+        }
+        public ObservableCollection<Sala> ListaSalas
+        {
+            get => listaSalas; set
+            {
+                this.listaSalas = value;
+                this.NotifyPropertyChanged("ListaSalas");
             }
         }
 

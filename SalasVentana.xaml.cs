@@ -43,10 +43,7 @@ namespace Proyecto_WPF
                 
             MessageBox.Show("Elige una sala para modificar");}
 }
-        private void eliminarSesionButton_Click(object sender, RoutedEventArgs e) {
-
-           vMS.EliminarSesion();
-        }
+        
         private void CancelarButton_Click(object sender, RoutedEventArgs e)
         {
             CambiarSalasStackPanel.Visibility = Visibility.Collapsed;
@@ -55,7 +52,7 @@ namespace Proyecto_WPF
 
         private void aleatorioButtonSalas_Click(object sender, RoutedEventArgs e)
         {
-            if (vMS.ComprobarNuevaSala())
+           if (vMS.ComprobarNuevaSala())
 
                 vMS.AñadirSala();
         }

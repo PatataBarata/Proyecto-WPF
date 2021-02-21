@@ -42,9 +42,10 @@ namespace Proyecto_WPF
 
                 MessageBox.Show("Elige una Sesion para modificar");
         }
-
+     
         private void eliminarSesionButton_Click(object sender, RoutedEventArgs e)
         {
+            //    vMS.EliminarSesion();
             if (false)//si ha seleccionado una sala para modificar
             {
                 GestorSesionesStackPanel.Visibility = Visibility.Visible;

@@ -41,7 +41,19 @@ namespace Proyecto_WPF
 
         internal ObservableCollection<Sala> GetSalas()
         {
-            throw new NotImplementedException();
+            ObservableCollection<Sala> salas = new ObservableCollection<Sala>();
+            connection.Open();
+            comando = connection.CreateCommand();
+            comando.CommandText = "SELECT * FROM salas ";
+            SqliteDataReader leer = comando.ExecuteReader();
+            while (leer.Read())
+            {
+                Sala sala = new Sala( leer.GetString(0), leer.GetInt32(1), leer.GetBoolean(2));
+                //(string numeroSala, int totalButacas, bool completa)
+                salas.Add(sala);
+
+            }
+            return salas;
         }
 
         internal ObservableCollection<Pelicula> GetPeliculas()
@@ -131,7 +143,7 @@ namespace Proyecto_WPF
             }
 
         }
-        private void UpdateSala(Sala sala) {
+        public void UpdateSala(Sala sala) {
             if (estaLaSala(sala))
             {
                 connection.Open();
@@ -144,7 +156,7 @@ namespace Proyecto_WPF
 
                 comando.Parameters["@numero"].Value = sala.NumeroSala;
                 comando.Parameters["@capacidad"].Value = sala.TotalButacas;
-                comando.Parameters["@hora"].Value = sala.Completa; //¿ esto se tiene que parsear?
+                comando.Parameters["@hora"].Value = sala.Disponible; //¿ esto se tiene que parsear?
 
                 comando.ExecuteNonQuery();
                 connection.Close();
@@ -182,21 +194,23 @@ namespace Proyecto_WPF
              comando.ExecuteNonQuery();
             connection.Close();
         }
-        private void InsertarSala(Sala sala)
+        public void InsertarSala(Sala sala)
         {
             if (!estaLaSala(sala))
             {
                 connection.Open();
                 comando = connection.CreateCommand();
-                comando.CommandText = "INSERT INTO salas VALUES (@numero, @capacidad, @disponible)";
+                comando.CommandText = "INSERT INTO salas VALUES (@idSala @numero, @capacidad, @disponible)";
 
+                comando.Parameters.Add("@idSala", SqliteType.Integer);
                 comando.Parameters.Add("@numero", SqliteType.Text);
                 comando.Parameters.Add("@capacidad", SqliteType.Integer);
                 comando.Parameters.Add("@disponible", SqliteType.Integer);
 
+          
                 comando.Parameters["@numero"].Value = sala.NumeroSala;
                 comando.Parameters["@capacidad"].Value = sala.TotalButacas;
-                comando.Parameters["@disponible"].Value = sala.Completa;
+                comando.Parameters["@disponible"].Value = sala.Disponible;
 
                 comando.ExecuteNonQuery();
                 connection.Close();
@@ -264,9 +278,9 @@ namespace Proyecto_WPF
             bool confirmacion = false;
             connection.Open();
             comando = connection.CreateCommand();
-            comando.CommandText = "SELECT * FROM salas WHERE numero=" + sala.NumeroSala;
-            SqliteDataReader leer = comando.ExecuteReader();
-            if (leer.HasRows)
+            comando.CommandText = "SELECT * FROM salas WHERE numero='" + sala.NumeroSala+"'";
+            
+            if (comando.ExecuteReader().HasRows)
                 confirmacion = true;
 
             connection.Close();
